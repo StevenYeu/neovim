@@ -5,7 +5,9 @@ lsp.preset("recommended")
 lsp.ensure_installed({
   'tsserver',
   'rust_analyzer',
-  'eslint'
+  'eslint',
+  'pyright',
+  'gopls',
 })
 
 
@@ -18,12 +20,6 @@ lsp.format_on_save({
         ['null-ls'] = {'javascript', 'typescript', 'lua', 'rust', 'python', 'go', 'typescriptreact'},
     }
 })
-
-
-
-
-lsp.nvim_workspace()
-
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
@@ -65,12 +61,22 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
+lsp.configure('lua_ls', lsp.nvim_lua_ls())
+lsp.configure('pyright', {
+    settings = {
+        python = {
+            analysis = {
+                typeCheckingMode = "strict"
+            }
+        }
+    }
+})
+
 lsp.setup()
 
 vim.diagnostic.config({
     virtual_text = true
 })
-
 
 local null_ls = require('null-ls')
 null_ls.setup({
@@ -79,6 +85,8 @@ null_ls.setup({
     null_ls.builtins.formatting.eslint,
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.gofmt,
-    null_ls.builtins.formatting.rustfmt
+    null_ls.builtins.formatting.rustfmt,
+    null_ls.builtins.diagnostics.mypy,
+    null_ls.builtins.diagnostics.ruff
   }
 })
