@@ -6,7 +6,6 @@ lsp.ensure_installed({
   'tsserver',
   'rust_analyzer',
   'eslint',
-  'pyright',
   'gopls',
 })
 
@@ -17,7 +16,7 @@ lsp.format_on_save({
         timeout_ms = 10000,
     },
     servers = {
-        ['null-ls'] = {'javascript', 'typescript', 'lua', 'rust', 'python', 'go', 'typescriptreact'},
+        ['null-ls'] = {'javascript', 'typescript', 'lua','python', 'rust', 'go', 'typescriptreact'},
     }
 })
 
@@ -66,12 +65,11 @@ lsp.configure('pyright', {
     settings = {
         python = {
             analysis = {
-                typeCheckingMode = "strict"
+                typeCheckingMode = 'none'
             }
         }
     }
 })
-
 lsp.setup()
 
 vim.diagnostic.config({
@@ -86,7 +84,7 @@ null_ls.setup({
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.gofmt,
     null_ls.builtins.formatting.rustfmt,
-    null_ls.builtins.diagnostics.mypy,
-    null_ls.builtins.diagnostics.ruff
+    null_ls.builtins.diagnostics.ruff,
+    null_ls.builtins.diagnostics.mypy
   }
 })

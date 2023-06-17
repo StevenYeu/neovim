@@ -13,13 +13,13 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use({ 'rose-pine/neovim', 
-  as = 'rose-pine', 
+  use({ 'rose-pine/neovim',
+  as = 'rose-pine',
   config = function()
       vim.cmd('colorscheme rose-pine')
   end
   })
-
+  
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('nvim-treesitter/playground')
   use('theprimeagen/harpoon')
@@ -38,7 +38,7 @@ return require('packer').startup(function(use)
 			  end,
 		  },
 		  {'williamboman/mason-lspconfig.nvim'},
-
+ 
 		  -- Autocompletion
 		  {'hrsh7th/nvim-cmp'},
 		  {'hrsh7th/cmp-buffer'},
