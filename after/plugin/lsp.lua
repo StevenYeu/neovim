@@ -7,11 +7,7 @@ lsp.ensure_installed({
 	"rust_analyzer",
 	"eslint",
 	"gopls",
-	"ruff",
-	"stylua",
 	"lua_ls",
-	"mypy",
-	"black",
 	"pyright",
 })
 
