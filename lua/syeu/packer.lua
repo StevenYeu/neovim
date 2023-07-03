@@ -86,5 +86,23 @@ return require('packer').startup(function(use)
       end
   }
   use("jose-elias-alvarez/null-ls.nvim")
-
+	use({
+		"glepnir/lspsaga.nvim",
+		opt = true,
+		branch = "main",
+		event = "LspAttach",
+		config = function()
+			require("lspsaga").setup({})
+		end,
+		requires = {
+			{ "nvim-tree/nvim-web-devicons" },
+			--Please make sure you install markdown and markdown_inline parser
+			{ "nvim-treesitter/nvim-treesitter" },
+		},
+	})
+	use("folke/flash.nvim")
+	use({
+		"folke/trouble.nvim",
+		requires = { "nvim-tree/nvim-web-devicons" },
+	})
 end)
