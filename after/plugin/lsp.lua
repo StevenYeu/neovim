@@ -5,7 +5,6 @@ lsp.preset("recommended")
 lsp.ensure_installed({
 	"tsserver",
 	"rust_analyzer",
-	"eslint",
 	"gopls",
 	"lua_ls",
 	"pyright",
@@ -17,7 +16,18 @@ lsp.format_on_save({
 		timeout_ms = 10000,
 	},
 	servers = {
-		["null-ls"] = { "javascript", "typescript", "lua", "python", "rust", "go", "typescriptreact" },
+		["null-ls"] = {
+			"javascript",
+			"typescript",
+			"lua",
+			"rust",
+			"python",
+			"go",
+			"typescriptreact",
+			"javascriptreact",
+			"ocaml",
+			"json",
+		},
 	},
 })
 
@@ -107,5 +117,9 @@ null_ls.setup({
 		null_ls.builtins.formatting.rustfmt,
 		null_ls.builtins.diagnostics.ruff,
 		null_ls.builtins.diagnostics.mypy,
+		null_ls.builtins.diagnostics.eslint_d,
+		null_ls.builtins.formatting.ocamlformat,
+		null_ls.builtins.formatting.jq,
+
 	},
 })
