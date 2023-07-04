@@ -19,4 +19,4 @@ wk.register({
 	},
 }, { prefix = "<leader>" })
 
-wk.register({
+wk.register({ ["gR"] = { "Toogle LSP Reference" } })
