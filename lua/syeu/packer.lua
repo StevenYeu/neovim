@@ -89,6 +89,15 @@ return require("packer").startup(function(use)
 	})
 	use("jose-elias-alvarez/null-ls.nvim")
 	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({
+				disable_filetype = { "TelescopePrompt", "vim" },
+			})
+		end,
+	})
+
+	use({
 		"glepnir/lspsaga.nvim",
 		opt = true,
 		branch = "main",
