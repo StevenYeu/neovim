@@ -11,10 +11,10 @@ keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
 keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
 
 -- Rename all occurrences of the hovered word for the entire file
-keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
+keymap("n", "vgr", "<cmd>Lspsaga rename<CR>")
 
 -- Rename all occurrences of the hovered word for the selected files
-keymap("n", "gr", "<cmd>Lspsaga rename ++project<CR>")
+--keymap("n", "grp", "<cmd>Lspsaga rename ++project<CR>")
 
 -- Peek definition
 -- You can edit the file containing the definition in the floating window
@@ -31,7 +31,7 @@ keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
 -- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
 -- It also supports tagstack
 -- Use <C-t> to jump back
-keymap("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>")
+--keymap("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>")
 
 -- Go to type definition
 keymap("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>")
@@ -79,7 +79,7 @@ keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
 -- Note that if you use hover with ++keep, pressing this key again will
 -- close the hover window. If you want to jump to the hover window
 -- you should use the wincmd command "<C-w>w"
-keymap("n", "K", "<cmd>Lspsaga hover_doc ++keep<CR>")
+--keymap("n", "K", "<cmd>Lspsaga hover_doc ++keep<CR>")
 
 -- Call hierarchy
 keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
@@ -87,3 +87,5 @@ keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
 
 -- Floating terminal
 keymap({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
+
+keymap("n", "vrr", "<cmd>Lspsaga finder ref <CR>")
