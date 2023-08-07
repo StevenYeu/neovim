@@ -28,7 +28,13 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+vim.keymap.set("n", "<leader>q", "^")
+vim.keymap.set("n", "<leader>e", "$")
 
+wk.register({
+	["<leader>q"] = { "Go to start of line" },
+	["<leader>e"] = { "Go to end of line" },
+}, { mode = "n" })
 wk.register({
 	["<leader>pv"] = { "File Viewer" },
 	["J"] = { "Move Highlighted Line Down" },

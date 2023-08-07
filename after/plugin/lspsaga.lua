@@ -89,3 +89,25 @@ keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
 keymap({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
 
 keymap("n", "vrr", "<cmd>Lspsaga finder ref <CR>")
+
+wk.register({
+	["<leader>gh"] = { "Find Symbol Def" },
+	["<leader>ca"] = { "Code Action" },
+	["vgr"] = { "Rename All Occurances" },
+	["gp"] = { "Peek Definition" },
+	["gd"] = { "Go to Definition" },
+	["gt"] = { "Go to Definition" },
+	["<leader>sl"] = { "Show Line Diagnostic" },
+	["<leader>sb"] = { "Show Buffer Diagnostic" },
+	["<leader>sw"] = { "Show Worspace Diagnostic" },
+	["<leader>sc"] = { "Show Cursor Diagnostic" },
+	["[e"] = { "Jump Prev Diagnostic" },
+	["]e"] = { "Jump Next Diagnostic" },
+	["[E"] = { "Jump Prev Error Diagnostic" },
+	["]E"] = { "Jump Next Error Diagnostic" },
+	["<leader>o"] = { "Toogle Outline" },
+	["K"] = { "Hover" },
+	["<leader>cb"] = { "Show outgoing calls" },
+	["<leader>ci"] = { "Show incoming calls" },
+	["vrr"] = { "Show References, Implementations, Definitions" },
+}, { mode = "n" })
