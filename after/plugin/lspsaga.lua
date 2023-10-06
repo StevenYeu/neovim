@@ -17,9 +17,6 @@ keymap("n", "vgr", "<cmd>Lspsaga rename<CR>")
 --keymap("n", "grp", "<cmd>Lspsaga rename ++project<CR>")
 
 -- Peek definition
--- You can edit the file containing the definition in the floating window
--- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
--- It also supports tagstack
 -- Use <C-t> to jump back
 keymap("n", "gp", "<cmd>Lspsaga peek_definition<CR>")
 
@@ -27,9 +24,6 @@ keymap("n", "gp", "<cmd>Lspsaga peek_definition<CR>")
 keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
 
 -- Peek type definition
--- You can edit the file containing the type definition in the floating window
--- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
--- It also supports tagstack
 -- Use <C-t> to jump back
 --keymap("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>")
 
@@ -67,9 +61,6 @@ end)
 keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
 
 -- Hover Doc
--- If there is no hover doc,
--- there will be a notification stating that
--- there is no information available.
 -- To disable it just use ":Lspsaga hover_doc ++quiet"
 -- Pressing the key twice will enter the hover window
 keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
@@ -88,7 +79,7 @@ keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
 -- Floating terminal
 keymap({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
 
-keymap("n", "vrr", "<cmd>Lspsaga finder ref <CR>")
+keymap("n", "vrf", "<cmd>Lspsaga finder ref <CR>")
 
 wk.register({
 	["<leader>gh"] = { "Find Symbol Def" },
@@ -109,5 +100,6 @@ wk.register({
 	["K"] = { "Hover" },
 	["<leader>cb"] = { "Show outgoing calls" },
 	["<leader>ci"] = { "Show incoming calls" },
-	["vrr"] = { "Show References, Implementations, Definitions" },
+	["vrf"] = { "Show References, Implementations, Definitions" },
+	["<leader>fc"] = { "Format Code" },
 }, { mode = "n" })

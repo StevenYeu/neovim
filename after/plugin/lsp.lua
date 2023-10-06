@@ -1,107 +1,55 @@
-local lsp = require("lsp-zero")
+local lsp_zero = require("lsp-zero")
 
-lsp.preset("recommended")
+lsp_zero.on_attach(function(client, bufnr)
+	local opts = { buffer = bufnr, remap = false }
+	vim.keymap.set("n", "<space>fc", function()
+		vim.lsp.buf.format({ async = true })
+	end, opts)
+end)
 
-lsp.ensure_installed({
-	"tsserver",
-	"rust_analyzer",
-	"gopls",
-	"lua_ls",
-	"pyright",
-})
-
-lsp.format_on_save({
-	format_opts = {
-		async = false,
-		timeout_ms = 10000,
-	},
-	servers = {
-		["null-ls"] = {
-			"javascript",
-			"typescript",
-			"lua",
-			"rust",
-			"python",
-			"go",
-			"typescriptreact",
-			"javascriptreact",
-			"ocaml",
-			"json",
-		},
+require("mason").setup({})
+require("mason-lspconfig").setup({
+	ensure_installed = { "tsserver", "rust_analyzer", "gopls", "pyright", "lua_ls" },
+	handlers = {
+		lsp_zero.default_setup,
+		lua_ls = function()
+			local lua_opts = lsp_zero.nvim_lua_ls()
+			require("lspconfig").lua_ls.setup(lua_opts)
+		end,
 	},
 })
 
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-	["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-	["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-	["<C-y>"] = cmp.mapping.confirm({ select = true }),
-	["<C-Space>"] = cmp.mapping.complete(),
-})
+local cmp_action = require('lsp-zero').cmp_action()
+require('luasnip.loaders.from_vscode').lazy_load()
 
-cmp_mappings["<Tab>"] = nil
-cmp_mappings["<S-Tab>"] = nil
-
-lsp.setup_nvim_cmp({
-	mapping = cmp_mappings,
-})
-
-lsp.set_preferences({
-	sign_icons = {
-		error = "E",
-		warn = "W",
-		hint = "H",
-		info = "I",
+cmp.setup({
+	sources = {
+		{ name = "path" },
+		{ name = "nvim_lsp" },
+		{ name = "nvim_lua" },
+		{ name = "luasnip" },
 	},
+	formatting = lsp_zero.cmp_format(),
+	mapping = cmp.mapping.preset.insert({
+		["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+		["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+		["<C-y>"] = cmp.mapping.confirm({ select = true }),
+		["<C-f>"] = cmp_action.luasnip_jump_forward(),
+		["<C-b>"] = cmp_action.luasnip_jump_backward(),
+		["<C-Space>"] = cmp.mapping.complete(),
+	}),
 })
-
--- lsp.on_attach(function(client, bufnr)
--- 	local opts = { buffer = bufnr, remap = false }
---
--- 	vim.keymap.set("n", "gd", function()
--- 		vim.lsp.buf.definition()
--- 	end, opts)
--- 	vim.keymap.set("n", "K", function()
--- 		vim.lsp.buf.hover()
--- 	end, opts)
--- 	vim.keymap.set("n", "<leader>vws", function()
--- 		vim.lsp.buf.workspace_symbol()
--- 	end, opts)
--- 	vim.keymap.set("n", "<leader>vd", function()
--- 		vim.diagnostic.open_float()
--- 	end, opts)
--- 	vim.keymap.set("n", "[d", function()
--- 		vim.diagnostic.goto_next()
--- 	end, opts)
--- 	vim.keymap.set("n", "]d", function()
--- 		vim.diagnostic.goto_prev()
--- 	end, opts)
--- 	vim.keymap.set("n", "<leader>vca", function()
--- 		vim.lsp.buf.code_action()
--- 	end, opts)
--- 	vim.keymap.set("n", "<leader>vrr", function()
--- 		vim.lsp.buf.references()
--- 	end, opts)
--- 	vim.keymap.set("n", "<leader>vrn", function()
--- 		vim.lsp.buf.rename()
--- 	end, opts)
--- 	vim.keymap.set("i", "<C-h>", function()
--- 		vim.lsp.buf.signature_help()
--- 	end, opts)
--- end)
-
-lsp.configure("lua_ls", lsp.nvim_lua_ls())
-lsp.configure("pyright", {
+require("lspconfig").pyright.setup({
 	settings = {
 		python = {
 			analysis = {
-				typeCheckingMode = "none",
+				typeCheckingMode = "strict",
 			},
 		},
 	},
 })
-lsp.setup()
 
 vim.diagnostic.config({
 	virtual_text = true,
@@ -111,12 +59,10 @@ local null_ls = require("null-ls")
 null_ls.setup({
 	sources = {
 		null_ls.builtins.formatting.stylua,
-		null_ls.builtins.formatting.eslint,
+		null_ls.builtins.formatting.prettierd,
 		null_ls.builtins.formatting.black,
 		null_ls.builtins.formatting.gofmt,
 		null_ls.builtins.formatting.rustfmt,
-		null_ls.builtins.diagnostics.ruff,
-		null_ls.builtins.diagnostics.mypy,
 		null_ls.builtins.diagnostics.eslint_d,
 		null_ls.builtins.formatting.ocamlformat,
 		null_ls.builtins.formatting.jq,
