@@ -51,6 +51,12 @@ require("lspconfig").pyright.setup({
 	},
 })
 
+require("lspconfig").ruff_lsp.setup({
+	on_attach = function(client, buffer)
+		client.server_capabilities.hoverProvider = false
+	end,
+})
+
 vim.diagnostic.config({
 	virtual_text = true,
 })
