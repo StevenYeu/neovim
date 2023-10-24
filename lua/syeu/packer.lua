@@ -22,7 +22,6 @@ return require("packer").startup(function(use)
 	})
 
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
-	use("nvim-treesitter/playground")
 	use("mbbill/undotree")
 	use({
 		"VonHeikemen/lsp-zero.nvim",
@@ -93,4 +92,34 @@ return require("packer").startup(function(use)
 	})
 	use("rafamadriz/friendly-snippets")
 	use({ "saadparwaiz1/cmp_luasnip" })
+	use({
+		"stevearc/conform.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			local conform = require("conform")
+			conform.setup({
+				formatters_by_ft = {
+					lua = { "stylua" },
+					python = { "black" },
+					javascript = { { "prettierd", "prettier" } },
+					typescript = { "prettierd" },
+					svelte = { "prettierd" },
+					css = { { "prettierd", "prettier" } },
+					json = { { "prettier", "prettierd" } },
+					html = { { "prettier", "prettierd" } },
+					markdown = { { "prettier", "prettierd" } },
+					javascriptreact = { { "prettier", "prettierd" } },
+					typescriptreact = { "prettierd" },
+				},
+			})
+			local keymap = vim.keymap.set
+			keymap({ "n", "v" }, "<leader>fc", function()
+				conform.format({
+					lsp_fallback = true,
+					async = false,
+					timeout_ms = 500,
+				})
+			end, { desc = "Format Code" })
+		end,
+	})
 end)
