@@ -1,4 +1,3 @@
-local wk = require("which-key")
 local keymap = vim.keymap.set
 
 keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { desc = "Code Action" })

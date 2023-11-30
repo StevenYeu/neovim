@@ -1,16 +1,5 @@
 local lsp_zero = require("lsp-zero")
 
--- lsp_zero.on_attach(function(client, bufnr)
---     local opts = { buffer = bufnr, remap = false }
---     vim.keymap.set("n", "<space>fc", function()
---         if client.name == 'pyright' or client.name == "ruff_lsp" then
---             vim.cmd("silent !black -q %")
---         else
---             vim.lsp.buf.format({ async = true })
---         end
---     end, opts)
--- end)
-
 require("mason").setup({})
 require("mason-lspconfig").setup({
 	ensure_installed = { "tsserver", "rust_analyzer", "gopls", "pyright", "lua_ls" },
