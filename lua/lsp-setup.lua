@@ -30,7 +30,7 @@ end)
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_action = require("lsp-zero").cmp_action()
-require('luasnip').filetype_extend("typescriptreact", { "html" })
+require("luasnip").filetype_extend("typescriptreact", { "html" })
 require("luasnip.loaders.from_vscode").lazy_load()
 
 ---@diagnostic disable-next-line: missing-fields
@@ -64,6 +64,9 @@ require("mason-lspconfig").setup({
 })
 require("lspconfig").pyright.setup({
     settings = {
+        pyright = {
+            disableOrganizeImports = true,
+        },
         python = {
             analysis = {
                 typeCheckingMode = "strict",
@@ -74,7 +77,9 @@ require("lspconfig").pyright.setup({
 
 require("lspconfig").ruff_lsp.setup({
     on_attach = function(client, _)
-        client.server_capabilities.hoverProvider = false
+        if client.name == "ruff_lsp" then
+            client.server_capabilities.hoverProvider = false
+        end
     end,
 })
 
