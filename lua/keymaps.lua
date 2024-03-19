@@ -29,7 +29,7 @@ vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "Switch Tmux session" })
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer.sh<CR>", { desc = "Switch Tmux session" })
 vim.keymap.set("n", "<leader>q", "^", { desc = "Go to start of line" })
 vim.keymap.set("n", "<leader>e", "$", { desc = "Go to end of line" })
 

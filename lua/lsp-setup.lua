@@ -1,6 +1,8 @@
 local lsp_zero = require("lsp-zero")
 
 require("neodev").setup()
+vim.filetype.add({ extension = { templ = "templ" } })
+
 
 lsp_zero.on_attach(function(_, bufnr)
     local nmap = function(keys, func, desc)
@@ -53,7 +55,7 @@ cmp.setup({
 })
 require("mason").setup({})
 require("mason-lspconfig").setup({
-    ensure_installed = { "tsserver", "rust_analyzer", "gopls", "pyright", "lua_ls" },
+    ensure_installed = { "tsserver", "rust_analyzer", "gopls", "pyright", "lua_ls", "templ" },
     handlers = {
         lsp_zero.default_setup,
         lua_ls = function()
@@ -81,6 +83,19 @@ require("lspconfig").ruff_lsp.setup({
             client.server_capabilities.hoverProvider = false
         end
     end,
+})
+
+require("lspconfig").tailwindcss.setup({
+    filetypes = { "templ", "typescriptreact", "javascriptreact", "javascript", "typescript", "react" },
+    init_options = { userLanguages = { templ = "html" } },
+})
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require("lspconfig").html.setup({
+    capabilities = capabilities,
+    filetypes = { "html", "templ" },
 })
 
 vim.diagnostic.config({
