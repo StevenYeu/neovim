@@ -55,7 +55,7 @@ cmp.setup({
 })
 require("mason").setup({})
 require("mason-lspconfig").setup({
-    ensure_installed = { "tsserver", "rust_analyzer", "gopls", "pyright", "lua_ls", "templ" },
+    ensure_installed = { "tsserver", "rust_analyzer", "gopls", "pyright", "lua_ls", "templ", "tailwindcss", "html" },
     handlers = {
         lsp_zero.default_setup,
         lua_ls = function()
