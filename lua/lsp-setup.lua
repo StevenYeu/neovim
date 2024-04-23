@@ -3,13 +3,12 @@ local lsp_zero = require("lsp-zero")
 require("neodev").setup()
 vim.filetype.add({ extension = { templ = "templ" } })
 
-
 lsp_zero.on_attach(function(_, bufnr)
     local nmap = function(keys, func, desc)
         if desc then
             desc = "LSP: " .. desc
         end
-        vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc})
+        vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
     end
     nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
     nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
@@ -55,7 +54,21 @@ cmp.setup({
 })
 require("mason").setup({})
 require("mason-lspconfig").setup({
-    ensure_installed = { "tsserver", "rust_analyzer", "gopls", "pyright", "lua_ls", "templ", "tailwindcss", "html" },
+    ensure_installed = {
+        "tsserver",
+        "rust_analyzer",
+        "gopls",
+        "pyright",
+        "ruff_lsp",
+        "lua_ls",
+        "templ",
+        "tailwindcss",
+        "html",
+        "prettierd",
+        "prettier",
+        "zls",
+        "style_lua",
+    },
     handlers = {
         lsp_zero.default_setup,
         lua_ls = function()
@@ -86,7 +99,14 @@ require("lspconfig").ruff_lsp.setup({
 })
 
 require("lspconfig").tailwindcss.setup({
-    filetypes = { "templ", "typescriptreact", "javascriptreact", "javascript", "typescript", "react" },
+    filetypes = {
+        "templ",
+        "typescriptreact",
+        "javascriptreact",
+        "javascript",
+        "typescript",
+        "react",
+    },
     init_options = { userLanguages = { templ = "html" } },
 })
 
