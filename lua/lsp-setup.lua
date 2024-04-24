@@ -42,7 +42,7 @@ cmp.setup({
         { name = "nvim_lua" },
         { name = "luasnip" },
     },
-    formatting = lsp_zero.cmp_format(),
+    formatting = lsp_zero.cmp_format({}),
     mapping = cmp.mapping.preset.insert({
         ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
         ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
@@ -64,10 +64,7 @@ require("mason-lspconfig").setup({
         "templ",
         "tailwindcss",
         "html",
-        "prettierd",
-        "prettier",
         "zls",
-        "style_lua",
     },
     handlers = {
         lsp_zero.default_setup,
