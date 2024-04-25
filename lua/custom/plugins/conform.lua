@@ -31,6 +31,7 @@ return {
             markdown = { { "prettier", "prettierd" } },
             javascriptreact = { { "prettier", "prettierd" } },
             typescriptreact = { "prettierd" },
+            templ = { "templ" },
         },
         formatters = {
             shfmt = {

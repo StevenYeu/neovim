@@ -32,6 +32,7 @@ local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_action = require("lsp-zero").cmp_action()
 require("luasnip").filetype_extend("typescriptreact", { "html" })
+require("luasnip").filetype_extend("templ", { "html" })
 require("luasnip.loaders.from_vscode").lazy_load()
 
 ---@diagnostic disable-next-line: missing-fields
@@ -65,6 +66,7 @@ require("mason-lspconfig").setup({
         "tailwindcss",
         "html",
         "zls",
+        "htmx",
     },
     handlers = {
         lsp_zero.default_setup,
@@ -111,6 +113,11 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require("lspconfig").html.setup({
+    capabilities = capabilities,
+    filetypes = { "html", "templ" },
+})
+
+require("lspconfig").htmx.setup({
     capabilities = capabilities,
     filetypes = { "html", "templ" },
 })
