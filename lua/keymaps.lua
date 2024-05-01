@@ -23,6 +23,12 @@ vim.keymap.set(
     { desc = "Replace highlighted word" }
 )
 
+vim.keymap.set(
+    "n",
+    "<leader>rl",
+    [[:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    { desc = "Replace highlighted word for current line" }
+)
 -- Quick Fix
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
