@@ -35,7 +35,6 @@ require("luasnip").filetype_extend("typescriptreact", { "html" })
 require("luasnip").filetype_extend("templ", { "html" })
 require("luasnip.loaders.from_vscode").lazy_load()
 
----@diagnostic disable-next-line: missing-fields
 cmp.setup({
     sources = {
         { name = "path" },
@@ -50,7 +49,7 @@ cmp.setup({
         ["<C-y>"] = cmp.mapping.confirm({ select = true }),
         ["<C-f>"] = cmp_action.luasnip_jump_forward(),
         ["<C-b>"] = cmp_action.luasnip_jump_backward(),
-        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-c>"] = cmp.mapping.complete(),
     }),
 })
 require("mason").setup({})
