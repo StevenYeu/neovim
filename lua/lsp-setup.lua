@@ -37,10 +37,11 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup({
     sources = {
-        { name = "path" },
-        { name = "nvim_lsp" },
-        { name = "nvim_lua" },
         { name = "luasnip" },
+        { name = "nvim_lsp" },
+        { name = "buffer" },
+        { name = "path" },
+        { name = "nvim_lua" },
     },
     formatting = lsp_zero.cmp_format({}),
     mapping = cmp.mapping.preset.insert({
@@ -119,6 +120,9 @@ require("lspconfig").html.setup({
 require("lspconfig").htmx.setup({
     capabilities = capabilities,
     filetypes = { "html", "templ" },
+})
+require("lspconfig").bashls.setup({
+    filetypes = { "sh", "zsh" },
 })
 
 vim.diagnostic.config({
