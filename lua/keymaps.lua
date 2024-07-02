@@ -61,3 +61,9 @@ wk.register({
         r = "Toogle LSP Reference"
     },
 }, { prefix = "<leader>" })
+
+-- Split Window Management
+vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split Window Vertically" })
+vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split Window Horizontally" })
+vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Split Window Equally" })
+vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close Split Window" })
