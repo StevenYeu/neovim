@@ -15,6 +15,7 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy in system clip
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Copy in system clipboard" })
 
 vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "U", "<C-r>")
 
 vim.keymap.set(
     "n",
