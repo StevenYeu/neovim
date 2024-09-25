@@ -4,7 +4,11 @@ return {
     opts = {},
     dependencies = {
         "MunifTanjim/nui.nvim",
-        "rcarriga/nvim-notify",
+        {
+            "rcarriga/nvim-notify",
+            opts = { background_colour = "#000000"
+            }
+        },
     },
     config = function()
         require("noice").setup({
@@ -24,7 +28,7 @@ return {
                 inc_rename = false,           -- enables an input dialog for inc-rename.nvim
                 lsp_doc_border = true,        -- add a border to hover docs and signature help
             },
-            views = { -- added for transparent background
+            views = {                         -- added for transparent background
                 mini = {
                     win_options = {
                         winblend = 0
