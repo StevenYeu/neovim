@@ -6,7 +6,10 @@ return {
         "MunifTanjim/nui.nvim",
         {
             "rcarriga/nvim-notify",
-            opts = { background_colour = "#000000"
+            opts = {
+                background_colour = "#000000",
+                timeout = 2000,
+                stages = "static"
             }
         },
     },
