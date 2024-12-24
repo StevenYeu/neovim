@@ -4,14 +4,6 @@ return {
     opts = {},
     dependencies = {
         "MunifTanjim/nui.nvim",
-        {
-            "rcarriga/nvim-notify",
-            opts = {
-                background_colour = "#000000",
-                timeout = 2000,
-                stages = "static"
-            }
-        },
     },
     config = function()
         require("noice").setup({

@@ -56,11 +56,11 @@ cmp.setup({
 require("mason").setup({})
 require("mason-lspconfig").setup({
     ensure_installed = {
-        "tsserver",
+        "ts_ls",
         "rust_analyzer",
         "gopls",
         "pyright",
-        "ruff_lsp",
+        "ruff",
         "lua_ls",
         "templ",
         "tailwindcss",
@@ -89,9 +89,9 @@ require("lspconfig").pyright.setup({
     },
 })
 
-require("lspconfig").ruff_lsp.setup({
+require("lspconfig").ruff.setup({
     on_attach = function(client, _)
-        if client.name == "ruff_lsp" then
+        if client.name == "ruff" then
             client.server_capabilities.hoverProvider = false
         end
     end,
