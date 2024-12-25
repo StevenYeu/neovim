@@ -14,8 +14,3 @@ require('options')
 -- [[ Basic Keymaps ]]
 require('keymaps')
 
-
--- [[ Configure LSP ]]
--- (Language Server Protocol)
-require('lsp-setup')
-
