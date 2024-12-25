@@ -54,51 +54,6 @@ require("lazy").setup({
             require("lualine").setup({})
         end,
     },
-    { "numToStr/Comment.nvim", opts = {} },
-    {
-        "nvim-tree/nvim-tree.lua",
-        version = "*",
-        lazy = false,
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
-        config = function()
-            vim.g.loaded_netrw = 1
-            vim.g.loaded_netrwPlugin = 1
-            require("nvim-tree").setup({
-                view = {
-                    side = "right",
-                    width = 35,
-                    relativenumber = true,
-                },
-                renderer = {
-                    indent_markers = {
-                        enable = true,
-                    },
-                    icons = {
-                        glyphs = {
-                            folder = {
-                                arrow_closed = "", -- arrow when folder is closed
-                                arrow_open = "", -- arrow when folder is open
-                            },
-                        },
-                    },
-                },
-                actions = {
-                    open_file = {
-                        window_picker = {
-                            enable = false,
-                        },
-                    },
-                },
-                filters = {
-                    custom = { ".DS_Store" },
-                },
-                git = {
-                    ignore = false,
-                },
-            })
-        end,
-    },
+    { "numToStr/Comment.nvim",     opts = {} },
     { import = "custom.plugins" },
 }, {})
