@@ -1,35 +1,4 @@
 require("lazy").setup({
-    -- { "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
-    -- {
-    --     "neovim/nvim-lspconfig",
-    --     dependencies = {
-    --         "williamboman/mason.nvim",
-    --         "williamboman/mason-lspconfig.nvim",
-    --         { "j-hui/fidget.nvim", opts = {} },
-    --         {
-    --             "folke/lazydev.nvim",
-    --             ft = "lua", -- only load on lua files
-    --             opts = {
-    --                 library = {
-    --                     -- See the configuration section for more details
-    --                     -- Load luvit types when the `vim.uv` word is found
-    --                     { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-    --                 },
-    --             },
-    --         }
-    --     },
-    -- },
-    --
-    -- {
-    --     "hrsh7th/nvim-cmp",
-    --     dependencies = {
-    --         "L3MON4D3/LuaSnip",
-    --         "saadparwaiz1/cmp_luasnip",
-    --         "hrsh7th/cmp-nvim-lsp",
-    --         "hrsh7th/cmp-path",
-    --         "rafamadriz/friendly-snippets",
-    --     },
-    -- },
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
@@ -39,7 +8,6 @@ require("lazy").setup({
         end,
         opts = {},
     },
-
     {
         "rose-pine/neovim",
         name = "rose-pine",
@@ -54,7 +22,6 @@ require("lazy").setup({
             vim.cmd("colorscheme rose-pine")
         end,
     },
-
     {
         "nvim-lualine/lualine.nvim",
         dependencies = {
@@ -64,6 +31,6 @@ require("lazy").setup({
             require("lualine").setup({})
         end,
     },
-    { "numToStr/Comment.nvim",     opts = {} },
+    { "numToStr/Comment.nvim",  opts = {} },
     { import = "custom.plugins" },
 }, {})
