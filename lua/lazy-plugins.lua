@@ -22,7 +22,13 @@ require("lazy").setup({
             vim.cmd("colorscheme rose-pine")
         end,
     },
-    { "nvim-lualine/lualine.nvim", dependencies = { "nvim-tree/nvim-web-devicons" }},
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            require('lualine').setup({})
+        end
+    },
     { "numToStr/Comment.nvim",  opts = {} },
     { import = "custom.plugins" },
 }, {})
