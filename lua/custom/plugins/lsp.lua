@@ -82,7 +82,7 @@ return {
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'williamboman/mason.nvim' },
             { 'williamboman/mason-lspconfig.nvim' },
-            { "j-hui/fidget.nvim",                opts = {} },
+            -- { "j-hui/fidget.nvim",opts = {} },
             {
                 "folke/lazydev.nvim",
                 ft = "lua",
