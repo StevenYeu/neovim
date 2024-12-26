@@ -82,7 +82,6 @@ return {
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'williamboman/mason.nvim' },
             { 'williamboman/mason-lspconfig.nvim' },
-            -- { "j-hui/fidget.nvim",opts = {} },
             {
                 "folke/lazydev.nvim",
                 ft = "lua",
@@ -97,6 +96,12 @@ return {
             vim.opt.signcolumn = 'yes'
         end,
         config = function()
+            -- disagnostic signs
+            local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
+            for type, icon in pairs(signs) do
+                local hl = "DiagnosticSign" .. type
+                vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+            end
             local lsp_defaults = require('lspconfig').util.default_config
             lsp_defaults.capabilities = vim.tbl_deep_extend(
                 'force',
@@ -104,8 +109,6 @@ return {
                 require('cmp_nvim_lsp').default_capabilities()
             )
 
-            -- LspAttach is where you enable features that only work
-            -- if there is a language server active in the file
             vim.api.nvim_create_autocmd('LspAttach', {
                 desc = 'LSP actions',
                 callback = function(event)
