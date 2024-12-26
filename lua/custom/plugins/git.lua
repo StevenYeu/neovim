@@ -4,7 +4,7 @@ return {
     -- },
     {
         "lewis6991/gitsigns.nvim",
-        event = "LazyFile",
+        event = { "BufReadPost", "BufWritePost", "BufNewFile" },
         opts = {
             signs = {
                 add = { text = "+" },
