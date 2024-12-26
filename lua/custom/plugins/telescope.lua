@@ -13,16 +13,13 @@ return {
     },
     config = function()
         local builtin = require("telescope.builtin")
-        -- vim.keymap.set("n", "<leader>ff", function()
-        --     builtin.find_files()
-        -- end, { desc = "Find Files" })
         vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Search Git Files" })
         vim.keymap.set("n", "<leader>fl", function()
             builtin.live_grep({ file_ignore_patterns = { "vendor", "node_modules" } })
-        end, { desc = "Grep Search" })
+        end, { desc = "Live Search" })
         vim.keymap.set("n", "<leader>fw", function()
             builtin.grep_string({ search = vim.fn.input("Grep > ") })
-        end, { desc = "Live Grep Search" })
+        end, { desc = "Grep Search" })
         vim.keymap.set("n", "<leader>ff", function()
             builtin.find_files({
                 find_command = {
