@@ -136,9 +136,6 @@ return {
                     nmap("gs", vim.lsp.buf.signature_help, "Signature Documentation")
                 end,
             })
-
-            -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-            -- capabilities.textDocument.completion.completionItem.snippetSupport = true
             require("mason-lspconfig").setup({
                 ensure_installed = {
                     "ts_ls",
@@ -181,19 +178,19 @@ return {
                             end,
                         })
                     end,
-                    -- tailwindcss = function()
-                    --     require("lspconfig").tailwindcss.setup({
-                    --         filetypes = {
-                    --             "templ",
-                    --             "typescriptreact",
-                    --             "javascriptreact",
-                    --             "javascript",
-                    --             "typescript",
-                    --             "react",
-                    --         },
-                    --         init_options = { userLanguages = { templ = "html" } },
-                    --     })
-                    -- end,
+                    tailwindcss = function()
+                        require("lspconfig").tailwindcss.setup({
+                            filetypes = {
+                                "templ",
+                                "typescriptreact",
+                                "javascriptreact",
+                                "javascript",
+                                "typescript",
+                                "react",
+                            },
+                            init_options = { userLanguages = { templ = "html" } },
+                        })
+                    end,
                     html = function()
                         require("lspconfig").html.setup({
                             filetypes = { "html", "templ" },
@@ -209,8 +206,6 @@ return {
                             filetypes = { "sh", "zsh" },
                         })
                     end
-
-
                 },
             })
         end
